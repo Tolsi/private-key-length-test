@@ -14,7 +14,7 @@ object WavesWrongSizeKey extends App {
     constructor.setAccessible(true)
     constructor.newInstance()
   }
-  val pk = Array.fill(40)(0.toByte)
+  val pk = 1.toByte +: Array.fill(39)(0.toByte)
   val pubkey = provider.generatePublicKey(pk)
   val data = Array.fill(32)(0.toByte)
   val signature = Curve25519.sign(pk, data)
