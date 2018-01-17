@@ -6,7 +6,6 @@ import org.spongycastle.util.encoders.Hex
 import org.whispersystems.curve25519.OpportunisticCurve25519Provider
 import scorex.crypto.encode.Base58
 import scorex.crypto.hash.{Blake2b256, Keccak256}
-import scorex.crypto.signatures.Curve25519
 
 object WavesWrongSizeKey extends App {
 
@@ -44,6 +43,6 @@ object WavesWrongSizeKey extends App {
   println(s"Address: ${addressFromPublicKey('W', pubkey)}")
 
   val data = Array.fill(32)(1.toByte)
-  val signature = Curve25519.sign(pk, data)
+  val signature = provider.calculateSignature(provider.getRandom(64), pk, data)
   require(provider.verifySignature(pubkey, data, signature))
 }
