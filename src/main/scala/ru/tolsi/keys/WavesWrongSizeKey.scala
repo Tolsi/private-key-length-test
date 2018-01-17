@@ -3,17 +3,17 @@ package ru.tolsi.keys
 import java.lang.reflect.Constructor
 
 import org.spongycastle.util.encoders.Hex
-import org.whispersystems.curve25519.OpportunisticCurve25519Provider
+import org.whispersystems.curve25519.{JavaCurve25519Provider, OpportunisticCurve25519Provider}
 import scorex.crypto.encode.Base58
 import scorex.crypto.hash.{Blake2b256, Keccak256}
 
 object WavesWrongSizeKey extends App {
 
-  val provider: OpportunisticCurve25519Provider = {
-    val constructor = classOf[OpportunisticCurve25519Provider]
+  val provider: JavaCurve25519Provider = {
+    val constructor = classOf[JavaCurve25519Provider]
       .getDeclaredConstructors
       .head
-      .asInstanceOf[Constructor[OpportunisticCurve25519Provider]]
+      .asInstanceOf[Constructor[JavaCurve25519Provider]]
     constructor.setAccessible(true)
     constructor.newInstance()
   }
